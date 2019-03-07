@@ -2,5 +2,10 @@
   "zosversion": "2.2",
   "name": "base-contract-project",
   "version": "0.1.0",
-  "contracts": {}
+  "contracts": {
+    "Migrations": "Migrations",
+    "TokenMock": "TokenMock",
+    "MoneyMarket": "MoneyMarket",
+    "RealLotteryManager": "RealLotteryManager"
+  }
 }

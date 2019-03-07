@@ -1,11 +1,8 @@
-# Base Contract Project
+# PoolTogether Mock Contracts
 
-Project on which to base new Ethereum smart contract apps.
+A set of migrations that deploy the PoolTogether contracts, along with a mock MoneyMarket and Token.
 
-- Includes a consistent ganache setup
-- Updated Truffle Migration contract for zOS
-- Easy yarn commands to manage contracts
-- yarn test command runs truffle tests without migrations
+The migrations will deploy the contracts, mint tokens, start a lottery, and deposit into the lottery.
 
 # Local Usage
 
