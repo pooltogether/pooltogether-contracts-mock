@@ -48,9 +48,14 @@ $ yarn migrate
 To see what data is bootstrapped, have a look at the migrations.
 
 
-# Deploying to Ropsten
+# Deploying to Rinkeby
 
 ```
-zos push --network ropsten --from <admin address>
-yarn migrate-ropsten
+zos push --network rinkeby --from <admin address>
+yarn migrate-rinkeby
 ```
+
+# Notes
+
+Rinkeby DAI address: 0x6f2d6ff85efca691aad23d549771160a12f0a0fc
+Rinkeby MoneyMarket address: 0x3fda67f7583380e67ef93072294a7fac882fd7e7
