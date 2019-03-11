@@ -13,7 +13,7 @@ module.exports = function(deployer, networkName, accounts) {
 
     const token = await TokenMock.deployed()
     const moneyMarket = await MoneyMarket.deployed()
-    if (shell.exec(`zos create RealLotteryManager --init initialize --args ${moneyMarket.address},${token.address},${openDuration},${bondDuration} --network ${networkName} --from ${process.env.ADMIN_ADDRESS}`).code !== 0) {
+    if (shell.exec(`zos create RealLotteryManager --init init --args ${accounts[0]},${moneyMarket.address},${token.address},${openDuration},${bondDuration} --network ${networkName} --from ${process.env.ADMIN_ADDRESS}`).code !== 0) {
       throw new Error('Migration failed')
     }
   })

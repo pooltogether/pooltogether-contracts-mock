@@ -3649,7 +3649,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#8d76726441bf282b344adf4363d0810e6bd4a791"
+  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#0033a473fe90983b64e0059ca376f4341800822a"
   dependencies:
     chalk "^2.4.2"
     ganache-cli "^6.2.5"
