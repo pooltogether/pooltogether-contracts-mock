@@ -2218,7 +2218,7 @@ functional-red-black-tree@^1.0.1:
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
 
-ganache-cli@^6.2.5:
+ganache-cli@^6.2.5, ganache-cli@^6.4.1:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/ganache-cli/-/ganache-cli-6.4.1.tgz#77c1682883a544dcad160b0e8155e282aefb4f1f"
   integrity sha512-MUZ1DNnmlTrXnH6EuINuew75AI9d/wbIC0WpZCJo5Endsf6ZwEvfnfxGMpEnVizRri1mon2WWxLGAmALDxVcRQ==
@@ -3649,7 +3649,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#0033a473fe90983b64e0059ca376f4341800822a"
+  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#bfe0cc2097f639c96618a69dae83f6f88f84c62e"
   dependencies:
     chalk "^2.4.2"
     ganache-cli "^6.2.5"
