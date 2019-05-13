@@ -7,7 +7,7 @@ module.exports = {
     local: {
       host: 'localhost',
       port: 8545,
-      gas: 5000000,
+      gas: 8000000,
       gasPrice: 5e9,
       network_id: '*'
     },
@@ -34,6 +34,27 @@ module.exports = {
       network_id: 1,
       gas: 7000000,
       gasPrice: 10 * 1000000000
+    }
+  },
+
+  compilers: {
+    solc: {
+      version: "0.5.0",
+    }
+  },
+
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 1
+    }
+  },
+
+  mocha: {
+    reporter: 'eth-gas-reporter',
+    reporterOptions : {
+      currency: 'USD',
+      gasPrice: 10
     }
   }
 };

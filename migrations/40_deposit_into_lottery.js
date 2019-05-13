@@ -11,8 +11,8 @@ module.exports = function(deployer, networkName, accounts) {
     const lottery = await RealLottery.at(lotteryAddress)
     const token = await TokenMock.deployed()
 
-    const deposit = web3.utils.toWei('20', 'ether')
-    await token.approve(lotteryAddress, deposit)
-    await lottery.deposit(deposit)
+    const ticketPrice = web3.utils.toWei('20', 'ether')
+    await token.approve(lotteryAddress, ticketPrice)
+    await lottery.buyTickets(1)
   })
 };
