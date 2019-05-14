@@ -47,6 +47,12 @@ $ yarn migrate
 
 To see what data is bootstrapped, have a look at the migrations.
 
+If things aren't working properly (getting random errors?) then try:
+
+```
+$ rm networks/1234.json && rm -rf build && rm zos.dev-1234.json && zos push && yarn migrate
+```
+
 
 # Deploying to Rinkeby
 
