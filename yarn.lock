@@ -3844,7 +3844,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#be7a7834cfe0bd85daca9575523a7613149dac4c"
+  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#896184c1b7d46900182fe1ff424490b6f56da930"
   dependencies:
     chalk "^2.4.2"
     eth-gas-reporter "^0.2.0"
