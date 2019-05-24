@@ -2,7 +2,7 @@
 
 A set of migrations that deploy the PoolTogether contracts, along with a mock MoneyMarket and Token.
 
-The migrations will deploy the contracts, mint tokens, start a lottery, and deposit into the lottery.
+The migrations will deploy the contracts, mint tokens, start a pool, and deposit into the pool.
 
 # Local Usage
 

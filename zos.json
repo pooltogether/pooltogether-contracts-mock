@@ -6,6 +6,6 @@
     "Migrations": "Migrations",
     "TokenMock": "TokenMock",
     "MoneyMarket": "MoneyMarket",
-    "RealLotteryManager": "RealLotteryManager"
+    "RealPoolManager": "RealPoolManager"
   }
 }
