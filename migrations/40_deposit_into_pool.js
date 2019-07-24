@@ -10,6 +10,6 @@ module.exports = function(deployer, networkName, accounts) {
 
     const ticketPrice = web3.utils.toWei('20', 'ether')
     await token.approve(pool.address, ticketPrice)
-    await pool.deposit(ticketPrice)
+    await pool.depositPool(ticketPrice)
   })
 };
