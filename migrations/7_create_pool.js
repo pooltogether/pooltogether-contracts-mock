@@ -9,10 +9,9 @@ module.exports = function(deployer, networkName, accounts) {
   deployer.then(async () => {
     const feeFraction = web3.utils.toWei('0.05', 'ether')
 
-    const token = await TokenMock.deployed()
     const moneyMarket = await MoneyMarket.deployed()
 
-    if (shell.exec(`openzeppelin create RealPool --init init --args ${accounts[0]},${moneyMarket.address},${token.address},${feeFraction} --network ${networkName} --from ${process.env.ADMIN_ADDRESS}`).code !== 0) {
+    if (shell.exec(`openzeppelin create RealPool --init init --args ${accounts[0]},${moneyMarket.address},${feeFraction},${accounts[0]} --network ${networkName} --from ${process.env.ADMIN_ADDRESS}`).code !== 0) {
       throw new Error('Migration failed')
     }
   })
