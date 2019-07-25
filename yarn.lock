@@ -3792,7 +3792,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "https://codeload.github.com/DeltaCamp/pooltogether-contracts/tar.gz/5fa440d87c118c764b1bb4d751251d87169a0563"
+  resolved "https://codeload.github.com/DeltaCamp/pooltogether-contracts/tar.gz/9e1324417b4be3166e8b364845795086fb7b2686"
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#d4cd76b5ff2cfeeffc4957a571630b8ca5eee62c
     "@openzeppelin/cli" "^2.5.1"
