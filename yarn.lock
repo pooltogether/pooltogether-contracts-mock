@@ -3824,7 +3824,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#881bf2659f0456c35dd55d163d93dab1ed7a6a34"
+  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#6da349424454480b315facaee9dc653712d8fdb2"
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#d4cd76b5ff2cfeeffc4957a571630b8ca5eee62c
     "@openzeppelin/cli" "^2.5.1"
