@@ -3824,7 +3824,7 @@ pinkie@^2.0.0:
 
 pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#34d4d10f743ee19d2387518fb165fe9d7b9daebb"
+  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#b8306bff52fb11af02438ae2dbe5ac937a3b9690"
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#d4cd76b5ff2cfeeffc4957a571630b8ca5eee62c
     "@openzeppelin/cli" "^2.5.1"
@@ -5753,6 +5753,7 @@ web3@^1.2.0:
 
 "websocket@git://github.com/frozeman/WebSocket-Node.git#browserifyCompatible":
   version "1.0.26"
+  uid "6c72925e3f8aaaea8dc8450f97627e85263999f2"
   resolved "git://github.com/frozeman/WebSocket-Node.git#6c72925e3f8aaaea8dc8450f97627e85263999f2"
   dependencies:
     debug "^2.2.0"
@@ -5762,7 +5763,6 @@ web3@^1.2.0:
 
 "websocket@github:frozeman/WebSocket-Node#browserifyCompatible":
   version "1.0.26"
-  uid "6c72925e3f8aaaea8dc8450f97627e85263999f2"
   resolved "https://codeload.github.com/frozeman/WebSocket-Node/tar.gz/6c72925e3f8aaaea8dc8450f97627e85263999f2"
   dependencies:
     debug "^2.2.0"

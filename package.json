@@ -10,14 +10,14 @@
     "start": "./scripts/ganache.sh",
     "migrate": "truffle migrate --network local",
     "migrate-rinkeby": "truffle migrate --network rinkeby",
-    "session": "oz session --from $ADMIN_ADDRESS --network local --expires 7200",
-    "session-rinkeby": "oz session --from $ADMIN_ADDRESS --network rinkeby --expires 7200",
+    "session": "oz session --from $ADMIN_ADDRESS --network local --expires 7200 --timeout 3600",
+    "session-rinkeby": "oz session --from $ADMIN_ADDRESS --network rinkeby --expires 7200 --timeout 3600",
     "push": "oz push",
     "update-all": "oz update --all",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
     "console": "truffle console --network local",
     "version": "truffle version",
-    "zos-truffle-merge": "zos-truffle-merge -n 1234 zos.dev-1234.json"
+    "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
   },
   "dependencies": {
     "pooltogether-contracts": "DeltaCamp/pooltogether-contracts#master"
