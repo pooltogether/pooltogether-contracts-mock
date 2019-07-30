@@ -7,7 +7,7 @@ module.exports = function(deployer, networkName, accounts) {
   if (tdr.isDryRunNetworkName(networkName)) { return }
   deployer.then(async () => {
 
-    let supplyRateMantissa = '1000000000000000' // 0.001 per block
+    let supplyRateMantissa = '4960317460300' // about 20% per week
 
     const token = await TokenMock.deployed()
     if (shell.exec(`openzeppelin create MoneyMarket --init initialize --args ${token.address},${supplyRateMantissa} --network ${networkName} --from ${process.env.ADMIN_ADDRESS}`).code !== 0) {
