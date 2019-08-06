@@ -17,6 +17,7 @@
     "update-all": "oz update --all",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
     "console": "truffle console --network local",
+    "console-rinkeby": "truffle console --network rinkeby",
     "version": "truffle version",
     "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
   },
