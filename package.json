@@ -10,6 +10,7 @@
     "start": "./scripts/ganache.sh",
     "compile": "truffle compile",
     "migrate": "truffle migrate --network local",
+    "accrue": "truffle exec scripts/accrue.js --network local",
     "migrate-rinkeby": "truffle migrate --network rinkeby",
     "session": "oz session --from $ADMIN_ADDRESS --network local --expires 7200 --timeout 3600",
     "session-rinkeby": "oz session --from $ADMIN_ADDRESS --network rinkeby --expires 7200 --timeout 3600",
