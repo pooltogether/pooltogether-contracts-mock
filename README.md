@@ -65,3 +65,5 @@ yarn migrate-rinkeby
 
 Rinkeby DAI address: 0x6f2d6ff85efca691aad23d549771160a12f0a0fc
 Rinkeby MoneyMarket address: 0x3fda67f7583380e67ef93072294a7fac882fd7e7
+
+To have the mock cToken actually accrue interest, you need to call `yarn accrue`
