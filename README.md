@@ -1,3 +1,7 @@
+## DEPRECATED
+  
+❗️❗️❗️❗️ The version 1.0 contracts are no longer used or maintained. ❗️❗️❗️❗️
+
 # PoolTogether Mock Contracts
 
 A set of migrations that deploy the PoolTogether contracts, along with a mock MoneyMarket and Token.
