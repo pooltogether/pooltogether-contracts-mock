@@ -23,6 +23,6 @@
     "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
   },
   "dependencies": {
-    "pooltogether-contracts": "DeltaCamp/pooltogether-contracts#master"
+    "pooltogether-contracts": "pooltogether/pooltogether-contracts#master"
   }
 }

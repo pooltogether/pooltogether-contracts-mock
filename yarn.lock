@@ -3221,9 +3221,9 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
-pooltogether-contracts@DeltaCamp/pooltogether-contracts#master:
+pooltogether-contracts@pooltogether/pooltogether-contracts#master:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/DeltaCamp/pooltogether-contracts.git#b52c131dfe64e1c92e5d113bd21e27761824eabe"
+  resolved "https://codeload.github.com/pooltogether/pooltogether-contracts/tar.gz/5b623072f49e4d3fbabe6de38bbae7103c408ccf"
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#d4cd76b5ff2cfeeffc4957a571630b8ca5eee62c
     "@openzeppelin/cli" "2.5.1"
@@ -4875,6 +4875,7 @@ web3@^0.18.4:
   dependencies:
     debug "^2.2.0"
     es5-ext "^0.10.50"
+    gulp "^4.0.2"
     nan "^2.14.0"
     typedarray-to-buffer "^3.1.5"
     yaeti "^0.0.6"
