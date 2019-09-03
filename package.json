@@ -15,7 +15,7 @@
     "session": "oz session --from $ADMIN_ADDRESS --network local --expires 7200 --timeout 3600",
     "session-rinkeby": "oz session --from $ADMIN_ADDRESS --network rinkeby --expires 7200 --timeout 3600",
     "push": "oz push",
-    "update-all": "oz update --all",
+    "update-all": "oz update --all --from $ADMIN_ADDRESS",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
     "console": "truffle console --network local",
     "console-rinkeby": "truffle console --network rinkeby",
