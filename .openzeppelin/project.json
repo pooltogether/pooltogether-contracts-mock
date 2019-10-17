@@ -1,7 +1,6 @@
 {
   "manifestVersion": "2.2",
   "contracts": {
-    "SortitionSumTreeFactory": "SortitionSumTreeFactory",
     "Migrations": "Migrations",
     "RealPool": "RealPool",
     "TokenMock": "TokenMock",
