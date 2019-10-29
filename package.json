@@ -17,7 +17,7 @@
     "push": "oz push",
     "update-all": "oz update --all --from $ADMIN_ADDRESS",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
-    "console": "oze --network localhost console",
+    "console": "oze --network local console",
     "console-rinkeby": "oze --network rinkeby console",
     "version": "truffle version",
     "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
