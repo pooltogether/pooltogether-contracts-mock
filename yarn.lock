@@ -20,9 +20,9 @@
     openzeppelin-solidity "^1.12.0"
     web3-utils "^1.2.1"
 
-"@kleros/kleros@DeltaCamp/kleros#c594df4fb8f1917e81292518dd46c6dda3be02ea":
+"@kleros/kleros@DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f":
   version "0.0.7"
-  resolved "https://codeload.github.com/DeltaCamp/kleros/tar.gz/c594df4fb8f1917e81292518dd46c6dda3be02ea"
+  resolved "https://codeload.github.com/DeltaCamp/kleros/tar.gz/ca7fbdcc195cfd1267efb99aae905c3400a5ea5f"
   dependencies:
     "@kleros/kleros-interaction" "^0.9.0"
     minimetoken "^0.2.0"
@@ -3450,7 +3450,7 @@ onetime@^5.1.0:
 
 openzeppelin-ethers@pooltogether/openzeppelin-ethers#master:
   version "1.0.0"
-  resolved "https://codeload.github.com/pooltogether/openzeppelin-ethers/tar.gz/fcab77423ceabd07bb1efff3c1ae44745de87c87"
+  resolved "https://codeload.github.com/pooltogether/openzeppelin-ethers/tar.gz/77d8c40805453abd6a1a081793a09d5bb77f7064"
   dependencies:
     async-repl "^0.4.0"
     chalk "^2.4.2"
