@@ -17,8 +17,8 @@
     "push": "oz push",
     "update-all": "oz update --all --from $ADMIN_ADDRESS",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
-    "console": "truffle console --network local",
-    "console-rinkeby": "truffle console --network rinkeby",
+    "console": "oze --network localhost console",
+    "console-rinkeby": "oze --network rinkeby console",
     "version": "truffle version",
     "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
   },
@@ -32,6 +32,7 @@
     "eth-gas-reporter": "0.2.0",
     "fixidity": "DeltaCamp/Fixidity#edf533f77df43b16a7b92f17af7a8930db01f293",
     "ganache-cli": "6.5.0",
+    "openzeppelin-ethers": "pooltogether/openzeppelin-ethers#master",
     "pooltogether-contracts": "pooltogether/pooltogether-contracts#feature/token",
     "shelljs": "0.8.3",
     "truffle": "5.0.28",
