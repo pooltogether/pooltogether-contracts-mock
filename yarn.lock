@@ -10,17 +10,27 @@
     regenerator-runtime "^0.13.2"
 
 "@kleros/kleros-interaction@^0.9.0":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@kleros/kleros-interaction/-/kleros-interaction-0.9.1.tgz#3646eed164731ee26ec1ca75d8a57f8105560c25"
-  integrity sha512-/C0x/LcWsccKXidBqPzAXUCpsSBxNxXL8fXZhJ83Fq5+/vlRhiPs30NDNqzZUZN/WpU44Bcq7WdhmS+33wYe+w==
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/@kleros/kleros-interaction/-/kleros-interaction-0.9.3.tgz#c75879a835cc2e8885263ced5a5756d4498f0efa"
+  integrity sha512-DhRCUn/XqRUTgBCeOaTY/RCtDjewdk/NEOXqI7LN0heU+uGP2Q2t2YdQoXtFOp9/wz8iicMNMAwnhPMoXJOKPw==
   dependencies:
+    "@kleros/kleros" "^0.1.2"
     "@realitio/realitio-contracts" "^2.0.5"
     minimetoken "^0.2.0"
     openzeppelin-solidity "^1.12.0"
+    web3-utils "^1.2.1"
 
 "@kleros/kleros@DeltaCamp/kleros#c594df4fb8f1917e81292518dd46c6dda3be02ea":
   version "0.0.7"
   resolved "https://codeload.github.com/DeltaCamp/kleros/tar.gz/c594df4fb8f1917e81292518dd46c6dda3be02ea"
+  dependencies:
+    "@kleros/kleros-interaction" "^0.9.0"
+    minimetoken "^0.2.0"
+
+"@kleros/kleros@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@kleros/kleros/-/kleros-0.1.2.tgz#6aeb1e90bdf813a66122493c3314c06fac5b6be6"
+  integrity sha512-uaoZ1Q12shrn61j8RumbaOEFN7I0XPN3DtdQW1SiKEgDattkURWwiHRtFPvsRcVtaIseAJeDlsXQpcZxtcNpsg==
   dependencies:
     "@kleros/kleros-interaction" "^0.9.0"
     minimetoken "^0.2.0"
@@ -325,7 +335,7 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.4.tgz#64db61e0359eb5a8d99b55e05c729f130a678b04"
   integrity sha512-W0+n1Y+gK/8G2P/piTkBBN38Qc5Q1ZSO6B5H3QmPCUewaiXOo2GCAWZ4ElZCcNhjJuBSUSLGFUJnmlCn5+nxOQ==
 
-"@types/node@^10.0.3", "@types/node@^10.3.2":
+"@types/node@^10.0.3":
   version "10.14.17"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.17.tgz#b96d4dd3e427382482848948041d3754d40fd5ce"
   integrity sha512-p/sGgiPaathCfOtqu2fx5Mu1bcjuP8ALFg4xpGgNkcin7LwRyzUKniEHBKdcE1RPsenq5JVPIpMTJSygLboygQ==
@@ -334,6 +344,11 @@
   version "10.14.22"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.22.tgz#34bcdf6b6cb5fc0db33d24816ad9d3ece22feea4"
   integrity sha512-9taxKC944BqoTVjE+UT3pQH0nHZlTvITwfsOZqyc+R3sfJuxaTtxWjfn1K2UlxyPcKHf0rnaXcVFrS9F9vf0bw==
+
+"@types/node@^10.3.2":
+  version "10.17.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.0.tgz#537c61a1df699a8331c79dab2ccc2c8799873c66"
+  integrity sha512-wuJwN2KV4tIRz1bu9vq5kSPasJ8IsEjZaP1ZR7KlmdUZvGF/rXy8DmXOVwUD0kAtvtJ7aqMKPqUXC0NUTDbrDg==
 
 "@types/node@^8.0.0":
   version "8.10.53"
@@ -1637,6 +1652,13 @@ eth-lib@0.2.8:
     elliptic "^6.4.0"
     xhr-request-promise "^0.1.2"
 
+ethereum-bloom-filters@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ethereum-bloom-filters/-/ethereum-bloom-filters-1.0.6.tgz#9cdebb3ec20de96ec4a434c6bad6ea5a513037aa"
+  integrity sha512-dE9CGNzgOOsdh7msZirvv8qjHtnHpvBlKe2647kM8v+yeF71IRso55jpojemvHV+jMjr48irPWxMRaHuOWzAFA==
+  dependencies:
+    js-sha3 "^0.8.0"
+
 ethereumjs-testrpc-sc@^6.5.1-sc.0:
   version "6.5.1-sc.1"
   resolved "https://registry.yarnpkg.com/ethereumjs-testrpc-sc/-/ethereumjs-testrpc-sc-6.5.1-sc.1.tgz#514020faa813d9f5cb9ae13739de7c8704ff0ec2"
@@ -2648,6 +2670,11 @@ js-sha3@^0.6.1:
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.6.1.tgz#5b89f77a7477679877f58c4a075240934b1f95c0"
   integrity sha1-W4n3enR3Z5h39YxKB1JAk0sflcA=
 
+js-sha3@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
+  integrity sha512-gF1cRrHhIzNfToc802P800N8PpXS+evLLXfsVpowqmAFR9uwbi89WvXg2QspOmXL8QL86J4T1EpFu+yUkwJY3Q==
+
 js-yaml@3.x:
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
@@ -3423,7 +3450,7 @@ onetime@^5.1.0:
 
 openzeppelin-ethers@pooltogether/openzeppelin-ethers#master:
   version "1.0.0"
-  resolved "https://codeload.github.com/pooltogether/openzeppelin-ethers/tar.gz/4957a6d19be9864e7228778f8991004186774d07"
+  resolved "https://codeload.github.com/pooltogether/openzeppelin-ethers/tar.gz/fcab77423ceabd07bb1efff3c1ae44745de87c87"
   dependencies:
     async-repl "^0.4.0"
     chalk "^2.4.2"
@@ -3664,11 +3691,11 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
-pooltogether-contracts@pooltogether/pooltogether-contracts#feature/token:
+pooltogether-contracts@pooltogether/pooltogether-contracts#v2.x:
   version "0.1.0"
-  resolved "https://codeload.github.com/pooltogether/pooltogether-contracts/tar.gz/ea50ff4476e5369c7a2a1072b80172046c1b8c71"
+  resolved "https://codeload.github.com/pooltogether/pooltogether-contracts/tar.gz/2603ca6612e7c61c341e4d0927a98a88cb398c54"
   dependencies:
-    "@kleros/kleros" DeltaCamp/kleros#c594df4fb8f1917e81292518dd46c6dda3be02ea
+    "@kleros/kleros" DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f
     "@openzeppelin/cli" "2.5.3"
     "@openzeppelin/contracts" OpenZeppelin/openzeppelin-contracts#45befe6e9505c457c096c04776dae40a83cff2de
     "@openzeppelin/contracts-ethereum-package" "2.2.1"
@@ -3677,6 +3704,7 @@ pooltogether-contracts@pooltogether/pooltogether-contracts#feature/token:
     eth-gas-reporter "0.2.0"
     fixidity DeltaCamp/Fixidity#edf533f77df43b16a7b92f17af7a8930db01f293
     ganache-cli "6.5.0"
+    openzeppelin-ethers pooltogether/openzeppelin-ethers#master
     shelljs "0.8.3"
     truffle "5.0.28"
     truffle-deploy-registry "0.5.0"
@@ -3812,7 +3840,7 @@ querystringify@^2.0.0:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
-randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
+randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5, randombytes@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
   integrity sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
@@ -5115,10 +5143,18 @@ web3-core-promievent@1.0.0-beta.37:
     any-promise "1.3.0"
     eventemitter3 "1.1.1"
 
-web3-core-promievent@1.2.1, web3-core-promievent@^1.0.0-beta.21:
+web3-core-promievent@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/web3-core-promievent/-/web3-core-promievent-1.2.1.tgz#003e8a3eb82fb27b6164a6d5b9cad04acf733838"
   integrity sha512-IVUqgpIKoeOYblwpex4Hye6npM0aMR+kU49VP06secPeN0rHMyhGF0ZGveWBrGvf8WDPI7jhqPBFIC6Jf3Q3zw==
+  dependencies:
+    any-promise "1.3.0"
+    eventemitter3 "3.1.2"
+
+web3-core-promievent@^1.0.0-beta.21:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/web3-core-promievent/-/web3-core-promievent-1.2.2.tgz#3b60e3f2a0c96db8a891c927899d29d39e66ab1c"
+  integrity sha512-tKvYeT8bkUfKABcQswK6/X79blKTKYGk949urZKcLvLDEaWrM3uuzDwdQT3BNKzQ3vIvTggFPX9BwYh0F1WwqQ==
   dependencies:
     any-promise "1.3.0"
     eventemitter3 "3.1.2"
@@ -5671,6 +5707,20 @@ web3-utils@1.2.1:
     ethjs-unit "0.1.6"
     number-to-bn "1.7.0"
     randomhex "0.1.5"
+    underscore "1.9.1"
+    utf8 "3.0.0"
+
+web3-utils@^1.2.1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/web3-utils/-/web3-utils-1.2.2.tgz#b53a08c40d2c3f31d3c4a28e7d749405df99c8c0"
+  integrity sha512-joF+s3243TY5cL7Z7y4h1JsJpUCf/kmFmj+eJar7Y2yNIGVcW961VyrAms75tjUysSuHaUQ3eQXjBEUJueT52A==
+  dependencies:
+    bn.js "4.11.8"
+    eth-lib "0.2.7"
+    ethereum-bloom-filters "^1.0.6"
+    ethjs-unit "0.1.6"
+    number-to-bn "1.7.0"
+    randombytes "^2.1.0"
     underscore "1.9.1"
     utf8 "3.0.0"
 
