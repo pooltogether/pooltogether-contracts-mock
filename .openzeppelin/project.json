@@ -1,10 +1,13 @@
 {
   "manifestVersion": "2.2",
   "contracts": {
-    "Migrations": "Migrations",
-    "RealPool": "RealPool",
-    "TokenMock": "TokenMock",
-    "MoneyMarket": "MoneyMarket"
+    "Sai": "TokenMock",
+    "Dai": "TokenMock",
+    "cDai": "MoneyMarketMock",
+    "cSai": "MoneyMarketMock",
+    "PoolDai": "PoolMock",
+    "PoolSai": "PoolMock",
+    "ScdMcdMigrationMock": "ScdMcdMigrationMock"
   },
   "dependencies": {},
   "name": "pooltogether-contracts-mock",
