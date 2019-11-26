@@ -29,23 +29,15 @@ function loadContext() {
   })
 }
 
-let context = loadContext()
-
-const {
-  provider,
-  signer,
-  walletAtIndex
-} = context
-
 function yellow() {
   console.log(chalk.yellow.call(chalk, ...arguments))
 }
 
-async function mintToMoneyMarketAndWallets(tokenContract, moneyMarketAddress) {
+async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAddress) {
   await tokenContract.mint(moneyMarketAddress, ethers.utils.parseEther('10000000'))
   let i;
   for (i = 0; i < 10; i++) {
-    const wallet = await walletAtIndex(i)
+    const wallet = await context.walletAtIndex(i)
     await tokenContract.mint(wallet.address, ethers.utils.parseEther('10000'))
   }
 }
@@ -55,41 +47,50 @@ async function migrate() {
   const migration = await project.migrationForNetwork(ozNetworkName)
 
   yellow('starting session...')
-  
+
+  runShell(`oz compile`)
+
   runShell(`oz session --network ${ozNetworkName} --from ${process.env.ADMIN_ADDRESS} --expires 3600 --timeout 600`)
 
-  await migration.migrate(20, () => runShell(`oz create Sai --init initialize --args ${signer.address}`))
+  let context = loadContext()
 
-  await migration.migrate(24, () => runShell(`oz create Dai --init initialize --args ${signer.address}`))
+  const {
+    provider,
+    signer
+  } = context
+  
+  await migration.migrate(20, () => runShell(`oz create Sai -s --init initialize --args ${signer.address}`))
+
+  await migration.migrate(24, () => runShell(`oz create Dai -s --init initialize --args ${signer.address}`))
   
   context = loadContext()
 
-  await migration.migrate(26, () => runShell(`oz create ScdMcdMigrationMock --init initialize --args ${context.contracts.Sai.address},${context.contracts.Dai.address}`))
+  await migration.migrate(26, () => runShell(`oz create ScdMcdMigrationMock -s --init initialize --args ${context.contracts.Sai.address},${context.contracts.Dai.address}`))
 
   context = loadContext()
 
   const sai = context.contracts.Sai
   let supplyRateMantissa = '4960317460300' // about 20% per week
 
-  await migration.migrate(30, () => runShell(`oz create cSai --init initialize --args ${context.contracts.Sai.address},${supplyRateMantissa}`))
+  await migration.migrate(30, () => runShell(`oz create cSai -s --init initialize --args ${context.contracts.Sai.address},${supplyRateMantissa}`))
 
-  await migration.migrate(32, () => runShell(`oz create cDai --init initialize --args ${context.contracts.Dai.address},${supplyRateMantissa}`))
+  await migration.migrate(32, () => runShell(`oz create cDai -s --init initialize --args ${context.contracts.Dai.address},${supplyRateMantissa}`))
 
   context = loadContext()
 
   await migration.migrate(40, async () => {
     const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolDai --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},"Pool Dai","poolDai",[]'`)
+    runShell(`oz create PoolDai -s --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},"Pool Dai","poolDai",[]'`)
   })
 
   await migration.migrate(42, async () => {
     const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolSai --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},"Pool Sai","poolSai",[]'`)
+    runShell(`oz create PoolSai -s --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},"Pool Sai","poolSai",[]'`)
   })
 
-  await migration.migrate(50, () => mintToMoneyMarketAndWallets(sai, context.contracts.cSai.address))
+  await migration.migrate(50, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))
 
-  await migration.migrate(55, () => mintToMoneyMarketAndWallets(context.contracts.Dai, context.contracts.cDai.address))
+  await migration.migrate(55, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address))
 
   // Set up ERC1820
   await migration.migrate(60, async () => {

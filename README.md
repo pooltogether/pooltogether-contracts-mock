@@ -4,7 +4,7 @@ A set of migrations that deploy the PoolTogether contracts, along with a mock Mo
 
 The migrations will deploy the contracts, mint tokens, start a pool, and deposit into the pool.
 
-# Local Usage
+# Setup
 
 Clone the repo and then install deps:
 
@@ -19,51 +19,30 @@ $ cp .envrc.example .envrc
 $ direnv allow
 ```
 
-Start `ganache-cli`:
+Start the local Ethereum node using `ganache-cli`:
 
 ```
 $ yarn start
 ```
 
-If you changed the mnemonic, you should update the ADMIN_ADDRESS variable in `.envrc` with another address (I use the second address listed when `ganache-cli` starts).
-
-Now start a new zos session:
-
-```
-$ yarn session
-```
-
-Push out the local contracts:
-
-```
-$ zos push
-```
-
-Migrate the contracts and bootstrap the data:
+Now deploy the contracts locally:
 
 ```
 $ yarn migrate
 ```
 
-To see what data is bootstrapped, have a look at the migrations.
-
-If things aren't working properly (getting random errors?) then try:
+To destroy your local deployment, run:
 
 ```
-$ rm networks/1234.json && rm -rf build && rm zos.dev-1234.json && zos push && yarn migrate
+$ yarn reset
 ```
 
+*Note: If you changed the mnemonic, you should update the ADMIN_ADDRESS variable in `.envrc` with another address (I use the second address listed when `ganache-cli` starts).*
 
-# Deploying to Rinkeby
+# Creating Rewards
+
+To accrue interest on the pools you need to run:
 
 ```
-zos push --network rinkeby --from <admin address>
-yarn migrate-rinkeby
+$ yarn accrue
 ```
-
-# Notes
-
-Rinkeby DAI address: 0x6f2d6ff85efca691aad23d549771160a12f0a0fc
-Rinkeby MoneyMarket address: 0x3fda67f7583380e67ef93072294a7fac882fd7e7
-
-To have the mock cToken actually accrue interest, you need to call `yarn accrue`

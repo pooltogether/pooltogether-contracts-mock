@@ -1,16 +1,44 @@
+#!/usr/bin/env node
+const assert = require('assert')
+const chalk = require('chalk')
+const { buildContext } = require('oz-console')
 
+let consoleNetwork, networkConfig
+
+// The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
+consoleNetwork = 'http://localhost:8545'
+
+// The OpenZeppelin SDK network config that oz-console should use as reference
+networkConfig = '.openzeppelin/dev-1234.json'
 
 async function accrue() {
-  const MoneyMarket = artifacts.require('MoneyMarket.sol')
-  const RealPool = artifacts.require('RealPool.sol')
+  const context = buildContext({
+    projectConfig: '.openzeppelin/project.json',
+    consoleNetwork,
+    networkConfig,
+    directory: 'build/contracts',
+    verbose: false,
+    mnemonic: process.env.HDWALLET_MNEMONIC
+  })
+  
+  let tx, receipt
 
-  mm = await MoneyMarket.deployed()
-  p = await RealPool.deployed()
-  console.log(`MoneyMarket(${mm.address})#reward(${p.address})`)
-  await mm.reward(p.address)
-  console.log(`Complete`)
+  console.log(chalk.yellow('Awarding cDai...'))
+  tx = await context.contracts.cDai.reward(context.contracts.PoolDai.address)
+  await context.provider.waitForTransaction(tx.hash)
+  receipt = await context.provider.getTransactionReceipt(tx.hash)
+  assert.equal(receipt.status, '1')
+  console.log(chalk.green('Awarded cDai!'))
+
+  console.log(chalk.yellow('Awarding cSai...'))
+  tx = await context.contracts.cSai.reward(context.contracts.PoolSai.address)
+  await context.provider.waitForTransaction(tx.hash)
+  receipt = await context.provider.getTransactionReceipt(tx.hash)
+  assert.equal(receipt.status, '1')
+  console.log(chalk.green('Awarded cSai!'))
 }
 
-module.exports = function (done) {
-  accrue().then(done)
-}
+console.log(chalk.yellow('Starting accrue...'))
+accrue().then(() => {
+  console.log(chalk.green('Done accrual!'))
+})
