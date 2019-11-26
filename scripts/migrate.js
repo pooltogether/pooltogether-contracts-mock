@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const assert = require('assert')
 const chalk = require('chalk')
 const runShell = require('./runShell')
 const { Project } = require('oz-migrate')
@@ -103,6 +104,17 @@ async function migrate() {
   await migration.migrate(50, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))
 
   await migration.migrate(55, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address))
+
+  await migration.migrate(60, async () => {
+    console.log('Minting DAI to ScdMcdMigration contract')
+    const tx = await context.contracts.Dai.mint(context.contracts.ScdMcdMigrationMock.address, ethers.utils.parseEther('5000000'))
+
+    await context.provider.waitForTransaction(tx.hash)
+
+    const receipt = await context.provider.getTransactionReceipt(tx.hash)
+    assert.equal(receipt.status, '1')
+    console.log(`Mint tx receipt status: ${receipt.status}`)
+  })
 }
 
 console.log(chalk.yellow('Started...'))
