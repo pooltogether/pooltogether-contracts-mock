@@ -12,9 +12,11 @@ let consoleNetwork, networkConfig, ozNetworkName
 const commander = require('commander');
 const program = new commander.Command()
 program.option('-r --rinkeby', 'run the migrations against rinkeby', () => true)
+program.option('-v --verbose', 'make all commands verbose', () => true)
 program.parse(process.argv)
 
 if (program.rinkeby) {
+  console.log(chalk.green('Selected network is rinkeby'))
   // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
   consoleNetwork = 'rinkeby'
 
@@ -24,6 +26,8 @@ if (program.rinkeby) {
   // The OpenZeppelin SDK network config that oz-console should use as reference
   networkConfig = '.openzeppelin/rinkeby.json'
 } else {
+  console.log(chalk.green('Selected network is local'))
+  
   // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
   consoleNetwork = 'http://localhost:8545'
 
@@ -37,16 +41,12 @@ if (program.rinkeby) {
 function loadContext() {
   return buildContext({
     projectConfig: '.openzeppelin/project.json',
-    consoleNetwork,
+    network: consoleNetwork,
     networkConfig,
     directory: 'build/contracts',
     verbose: false,
     mnemonic: process.env.HDWALLET_MNEMONIC
   })
-}
-
-function yellow() {
-  console.log(chalk.yellow.call(chalk, ...arguments))
 }
 
 async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAddress) {
@@ -55,18 +55,26 @@ async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAd
   for (i = 0; i < 10; i++) {
     const wallet = await context.walletAtIndex(i)
     await tokenContract.mint(wallet.address, ethers.utils.parseEther('10000'))
+    if (program.verbose) console.log(chalk.dim(`Minted to ${wallet.address}`))
+  }
+
+  const extraAddresses = (process.env.MINT_ADDRESSES || '').split(',')
+
+  for (i = 0; i < extraAddresses.length; i++) {
+    await tokenContract.mint(extraAddresses[i], ethers.utils.parseEther('10000'))
+    if (program.verbose) console.log(chalk.dim(`Minted to ${extraAddresses[i]}`))
   }
 }
+
+const ozOptions = program.verbose ? '' : '-s'
 
 async function migrate() {
   const project = new Project('.oz-migrate')
   const migration = await project.migrationForNetwork(ozNetworkName)
 
-  yellow('starting session...')
+  runShell(`oz compile ${ozOptions}`)
 
-  runShell(`oz compile`)
-
-  runShell(`oz session --network ${ozNetworkName} --from ${process.env.ADMIN_ADDRESS} --expires 3600 --timeout 600`)
+  runShell(`oz session ${ozOptions} --network ${ozNetworkName} --from ${process.env.ADMIN_ADDRESS} --expires 3600 --timeout 600`)
 
   let context = loadContext()
 
@@ -75,33 +83,36 @@ async function migrate() {
     signer
   } = context
   
-  await migration.migrate(20, () => runShell(`oz create Sai -s --init initialize --args ${signer.address}`))
+  await migration.migrate(20, () => runShell(`oz create Sai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`))
 
-  await migration.migrate(24, () => runShell(`oz create Dai -s --init initialize --args ${signer.address}`))
-  
-  context = loadContext()
+  await migration.migrate(24, () => {
+    runShell(`oz create Dai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    context = loadContext()
+  })
 
-  await migration.migrate(26, () => runShell(`oz create ScdMcdMigrationMock -s --init initialize --args ${context.contracts.Sai.address},${context.contracts.Dai.address}`))
-
-  context = loadContext()
+  await migration.migrate(26, () => {
+    runShell(`oz create ScdMcdMigrationMock ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.Sai.address},${context.contracts.Dai.address}`)
+    context = loadContext()
+  })
 
   const sai = context.contracts.Sai
   let supplyRateMantissa = '4960317460300' // about 20% per week
 
-  await migration.migrate(30, () => runShell(`oz create cSai -s --init initialize --args ${context.contracts.Sai.address},${supplyRateMantissa}`))
+  await migration.migrate(30, () => runShell(`oz create cSai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.Sai.address},${supplyRateMantissa}`))
 
-  await migration.migrate(32, () => runShell(`oz create cDai -s --init initialize --args ${context.contracts.Dai.address},${supplyRateMantissa}`))
-
-  context = loadContext()
+  await migration.migrate(32, () => {
+    runShell(`oz create cDai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.Dai.address},${supplyRateMantissa}`)
+    context = loadContext()
+  })
 
   await migration.migrate(40, async () => {
     const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolDai -s --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},"Pool Dai","poolDai",[]'`)
+    runShell(`oz create PoolDai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},"Pool Dai","poolDai",[]'`)
   })
 
   await migration.migrate(42, async () => {
     const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolSai -s --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},"Pool Sai","poolSai",[]'`)
+    runShell(`oz create PoolSai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},"Pool Sai","poolSai",[]'`)
   })
 
   await migration.migrate(50, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))

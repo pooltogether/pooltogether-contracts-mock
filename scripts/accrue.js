@@ -5,11 +5,26 @@ const { buildContext } = require('oz-console')
 
 let consoleNetwork, networkConfig
 
-// The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
-consoleNetwork = 'http://localhost:8545'
+const commander = require('commander');
+const program = new commander.Command()
+program.option('-r --rinkeby', 'run accrue against rinkeby', () => true)
+program.parse(process.argv)
 
-// The OpenZeppelin SDK network config that oz-console should use as reference
-networkConfig = '.openzeppelin/dev-1234.json'
+if (program.rinkeby) {
+  console.log(chalk.green(`Using network rinkeby`))
+  // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
+  consoleNetwork = 'rinkeby'
+
+  // The OpenZeppelin SDK network config that oz-console should use as reference
+  networkConfig = '.openzeppelin/rinkeby.json'
+} else {
+  console.log(chalk.green(`Using network local`))
+  // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
+  consoleNetwork = 'http://localhost:8545'
+
+  // The OpenZeppelin SDK network config that oz-console should use as reference
+  networkConfig = '.openzeppelin/dev-1234.json'
+}
 
 async function accrue() {
   const context = buildContext({
