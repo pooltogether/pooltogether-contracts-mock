@@ -9,14 +9,30 @@ const ethers = require('ethers')
 
 let consoleNetwork, networkConfig, ozNetworkName
 
-// The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
-consoleNetwork = 'http://localhost:8545'
+const commander = require('commander');
+const program = new commander.Command()
+program.option('-r --rinkeby', 'run the migrations against rinkeby', () => true)
+program.parse(process.argv)
 
-// The OpenZeppelin SDK network name
-ozNetworkName = 'local'
+if (program.rinkeby) {
+  // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
+  consoleNetwork = 'rinkeby'
 
-// The OpenZeppelin SDK network config that oz-console should use as reference
-networkConfig = '.openzeppelin/dev-1234.json'
+  // The OpenZeppelin SDK network name
+  ozNetworkName = 'rinkeby'
+
+  // The OpenZeppelin SDK network config that oz-console should use as reference
+  networkConfig = '.openzeppelin/rinkeby.json'
+} else {
+  // The network that the oz-console app should talk to.  (should really just use the ozNetworkName)
+  consoleNetwork = 'http://localhost:8545'
+
+  // The OpenZeppelin SDK network name
+  ozNetworkName = 'local'
+
+  // The OpenZeppelin SDK network config that oz-console should use as reference
+  networkConfig = '.openzeppelin/dev-1234.json'
+}
 
 function loadContext() {
   return buildContext({
