@@ -142,6 +142,11 @@ async function migrate() {
     assert.equal(receipt.status, '1')
     console.log(`Mint tx receipt status: ${receipt.status}`)
   })
+
+  await migration.migrate(65, async () => {
+    await context.contracts.PoolDai.initLocalMCDAwarePool(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
+    await context.contracts.PoolSai.initLocalMCDAwarePool(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
+  })
 }
 
 console.log(chalk.yellow('Started...'))
