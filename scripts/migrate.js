@@ -59,11 +59,13 @@ async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAd
     if (program.verbose) console.log(chalk.dim(`Minted to ${wallet.address}`))
   }
 
-  const extraAddresses = (process.env.MINT_ADDRESSES || '').split(',')
+  if (process.env.MINT_ADDRESSES) {
+    const extraAddresses = (process.env.MINT_ADDRESSES || '').split(',')
 
-  for (i = 0; i < extraAddresses.length; i++) {
-    await tokenContract.mint(extraAddresses[i], ethers.utils.parseEther('10000'))
-    if (program.verbose) console.log(chalk.dim(`Minted to ${extraAddresses[i]}`))
+    for (i = 0; i < extraAddresses.length; i++) {
+      await tokenContract.mint(extraAddresses[i], ethers.utils.parseEther('10000'))
+      if (program.verbose) console.log(chalk.dim(`Minted to ${extraAddresses[i]}`))
+    } 
   }
 }
 
