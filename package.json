@@ -18,7 +18,7 @@
     "update-all": "oz update --all --from $ADMIN_ADDRESS",
     "push-and-update": "yarn push && yarn update-all && yarn zos-truffle-merge",
     "reset": "rm .oz-migrate/local; rm .openzeppelin/dev-1234.json; rm -rf build",
-    "console": "oz-console --network http://localhost:8545",
+    "console": "oz-console --network http://localhost:8545 -m \"$HDWALLET_MNEMONIC\"",
     "console-rinkeby": "oz-console --network rinkeby -m \"$HDWALLET_MNEMONIC\"",
     "version": "truffle version",
     "zos-truffle-merge": "zos-truffle-merge -n 1234 .openzeppelin/dev-1234.json"
