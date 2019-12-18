@@ -7,6 +7,8 @@
     "cSai": "MoneyMarketMock",
     "PoolDai": "PoolMock",
     "PoolSai": "PoolMock",
+    "PoolDaiToken": "PoolTokenMock",
+    "PoolSaiToken": "PoolTokenMock",
     "ScdMcdMigrationMock": "ScdMcdMigrationMock"
   },
   "dependencies": {},

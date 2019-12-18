@@ -1,5 +1,5 @@
 pragma solidity ^0.5.0;
 
-import "pooltogether-contracts/contracts/test/LocalMCDAwarePool.sol";
+import "pooltogether-contracts/contracts/MCDAwarePool.sol";
 
-contract PoolMock is LocalMCDAwarePool {}
+contract PoolMock is MCDAwarePool {}

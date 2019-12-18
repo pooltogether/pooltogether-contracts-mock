@@ -120,21 +120,47 @@ async function migrate() {
     }
   })
 
+  const lockDuration = 40
+  const cooldownDuration = 80
+  const feeFraction = ethers.utils.parseEther('0.05')
+
   await migration.migrate(40, async () => {
-    const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolDai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},"Pool Dai","poolDai",[]'`)
+    runShell(`oz create PoolSai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},${lockDuration},${cooldownDuration}'`)
+    context = loadContext()
   })
 
-  await migration.migrate(42, async () => {
-    const feeFraction = ethers.utils.parseEther('0.05')
-    runShell(`oz create PoolSai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cSai.address},${feeFraction},${signer.address},"Pool Sai","poolSai",[]'`)
+  await migration.migrate(45, async () => {
+    runShell(`oz create PoolSaiToken ${ozOptions} --network ${ozNetworkName} --init init --args '"Pool Sai","poolSai",[],${context.contracts.PoolSai.address}'`)
+    context = loadContext()
   })
 
-  await migration.migrate(50, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))
+  await migration.migrate(46, async () => {
+    await context.contracts.PoolSai.setPoolToken(context.contracts.PoolSaiToken.address)
+  })
 
-  await migration.migrate(55, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address))
+  await migration.migrate(50, async () => {
+    runShell(`oz create PoolDai ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cDai.address},${feeFraction},${signer.address},${lockDuration},${cooldownDuration}'`)
+    context = loadContext()
+  })
+
+  await migration.migrate(55, async () => {
+    runShell(`oz create PoolDaiToken ${ozOptions} --network ${ozNetworkName} --init init --args '"Pool Dai","poolDai",[],${context.contracts.PoolDai.address}'`)
+    context = loadContext()
+  })
+
+  await migration.migrate(56, async () => {
+    await context.contracts.PoolDai.setPoolToken(context.contracts.PoolDaiToken.address)
+  })
 
   await migration.migrate(60, async () => {
+    await context.contracts.PoolDai.initMigration(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
+  })
+  
+  await migration.migrate(65, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))
+
+  await migration.migrate(70, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address))
+
+  await migration.migrate(75, async () => {
     console.log('Minting DAI to ScdMcdMigration contract')
     const tx = await context.contracts.Dai.mint(context.contracts.ScdMcdMigrationMock.address, ethers.utils.parseEther('5000000'))
 
@@ -145,10 +171,6 @@ async function migrate() {
     console.log(`Mint tx receipt status: ${receipt.status}`)
   })
 
-  await migration.migrate(65, async () => {
-    await context.contracts.PoolDai.initLocalMCDAwarePool(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
-    await context.contracts.PoolSai.initLocalMCDAwarePool(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
-  })
 }
 
 console.log(chalk.yellow('Started...'))
