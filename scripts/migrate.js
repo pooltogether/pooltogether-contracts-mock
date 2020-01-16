@@ -171,6 +171,33 @@ async function migrate() {
     console.log(`Mint tx receipt status: ${receipt.status}`)
   })
 
+
+
+  await migration.migrate(80, () => {
+    runShell(`oz create Usdc ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    context = loadContext()
+  })
+
+  await migration.migrate(85, () => {
+    runShell(`oz create cUsdc ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.Usdc.address},${supplyRateMantissa}`)
+    context = loadContext()
+  })
+
+  await migration.migrate(90, async () => {
+    runShell(`oz create PoolUsdc ${ozOptions} --network ${ozNetworkName} --init init --args '${signer.address},${context.contracts.cUsdc.address},${feeFraction},${signer.address},${lockDuration},${cooldownDuration}'`)
+    context = loadContext()
+  })
+
+  await migration.migrate(95, async () => {
+    runShell(`oz create PoolUsdcToken ${ozOptions} --network ${ozNetworkName} --init init --args '"Pool Usdc","poolUsdc",[],${context.contracts.PoolUsdc.address}'`)
+    context = loadContext()
+  })
+
+  await migration.migrate(100, async () => {
+    await context.contracts.PoolUsdc.setPoolToken(context.contracts.PoolUsdcToken.address)
+  })
+
+  await migration.migrate(105, () => mintToMoneyMarketAndWallets(context, context.contracts.Usdc, context.contracts.cUsdc.address))
 }
 
 console.log(chalk.yellow('Started...'))
