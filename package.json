@@ -39,7 +39,7 @@
     "ganache-cli": "6.5.0",
     "oz-console": "^1.1.0",
     "oz-migrate": "^0.2.1",
-    "pooltogether-contracts": "pooltogether/pooltogether-contracts#v2.x",
+    "pooltogether-contracts": "pooltogether/pooltogether-contracts#master",
     "shelljs": "0.8.3",
     "truffle": "5.0.28",
     "truffle-deploy-registry": "0.5.0",
