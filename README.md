@@ -1,6 +1,6 @@
 # PoolTogether Mock Contracts
 
-A set of migrations that deploy the PoolTogether contracts, along with a mock MoneyMarket and Token.
+A set of migrations that deploy the [PoolTogether contracts](https://github.com/pooltogether/pooltogether-contracts), along with a mock MoneyMarket and Token.
 
 The migrations will deploy the contracts, mint tokens, start a pool, and deposit into the pool.
 
