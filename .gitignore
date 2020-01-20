@@ -1,5 +1,6 @@
 node_modules*
-.oz-migrate
+.oz-migrate/local
+.oz-migrate/dev-*
 .ganache
 build
 networks/*
