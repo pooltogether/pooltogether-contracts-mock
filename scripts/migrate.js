@@ -50,12 +50,12 @@ function loadContext() {
   })
 }
 
-async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAddress) {
+async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAddress, amountInEth) {
   await tokenContract.mint(moneyMarketAddress, ethers.utils.parseEther('10000000'))
   let i;
   for (i = 0; i < 10; i++) {
     const wallet = await context.walletAtIndex(i)
-    await tokenContract.mint(wallet.address, ethers.utils.parseEther('10000'))
+    await tokenContract.mint(wallet.address, ethers.utils.parseEther(amountInEth))
     if (program.verbose) console.log(chalk.dim(`Minted to ${wallet.address}`))
   }
 
@@ -63,7 +63,7 @@ async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAd
     const extraAddresses = (process.env.MINT_ADDRESSES || '').split(',')
 
     for (i = 0; i < extraAddresses.length; i++) {
-      await tokenContract.mint(extraAddresses[i], ethers.utils.parseEther('10000'))
+      await tokenContract.mint(extraAddresses[i], ethers.utils.parseEther(amountInEth))
       if (program.verbose) console.log(chalk.dim(`Minted to ${extraAddresses[i]}`))
     } 
   }
@@ -158,9 +158,9 @@ async function migrate() {
     await context.contracts.PoolDai.initMigration(context.contracts.ScdMcdMigrationMock.address, context.contracts.PoolSai.address)
   })
   
-  await migration.migrate(65, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address))
+  await migration.migrate(65, () => mintToMoneyMarketAndWallets(context, sai, context.contracts.cSai.address, '10000'))
 
-  await migration.migrate(70, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address))
+  await migration.migrate(70, () => mintToMoneyMarketAndWallets(context, context.contracts.Dai, context.contracts.cDai.address, '10000'))
 
   await migration.migrate(75, async () => {
     console.log('Minting DAI to ScdMcdMigration contract')
@@ -197,7 +197,7 @@ async function migrate() {
     await context.contracts.PoolUsdc.setPoolToken(context.contracts.PoolUsdcToken.address)
   })
 
-  await migration.migrate(105, () => mintToMoneyMarketAndWallets(context, context.contracts.Usdc, context.contracts.cUsdc.address))
+  await migration.migrate(105, () => mintToMoneyMarketAndWallets(context, context.contracts.Usdc, context.contracts.cUsdc.address, '0.00000001'))
 }
 
 console.log(chalk.yellow('Started...'))
