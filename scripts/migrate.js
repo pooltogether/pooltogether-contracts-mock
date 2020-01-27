@@ -86,10 +86,12 @@ async function migrate() {
     signer
   } = context
   
-  await migration.migrate(20, () => runShell(`oz create Sai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`))
+  await migration.migrate(20, () => {
+    runShell(`oz create Sai ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},"Sai","Sai",18'`)
+  })
 
   await migration.migrate(24, () => {
-    runShell(`oz create Dai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    runShell(`oz create Dai ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},"Dai","Dai",18'`)
     context = loadContext()
   })
 
@@ -171,10 +173,8 @@ async function migrate() {
     console.log(`Mint tx receipt status: ${receipt.status}`)
   })
 
-
-
   await migration.migrate(80, () => {
-    runShell(`oz create Usdc ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    runShell(`oz create Usdc ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},"Usdc","Usdc",6'`)
     context = loadContext()
   })
 
