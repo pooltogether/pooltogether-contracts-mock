@@ -51,6 +51,13 @@ async function accrue() {
   receipt = await context.provider.getTransactionReceipt(tx.hash)
   assert.equal(receipt.status, '1')
   console.log(chalk.green('Awarded cSai!'))
+
+  console.log(chalk.yellow('Awarding cUsdc...'))
+  tx = await context.contracts.cUsdc.reward(context.contracts.PoolUsdc.address)
+  await context.provider.waitForTransaction(tx.hash)
+  receipt = await context.provider.getTransactionReceipt(tx.hash)
+  assert.equal(receipt.status, '1')
+  console.log(chalk.green('Awarded cUsdc!'))
 }
 
 console.log(chalk.yellow('Starting accrue...'))

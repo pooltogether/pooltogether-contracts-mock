@@ -3,12 +3,16 @@
   "contracts": {
     "Sai": "TokenMock",
     "Dai": "TokenMock",
+    "Usdc": "TokenMock",
     "cDai": "MoneyMarketMock",
     "cSai": "MoneyMarketMock",
+    "cUsdc": "MoneyMarketMock",
     "PoolDai": "PoolMock",
     "PoolSai": "PoolMock",
+    "PoolUsdc": "PoolMock",
     "PoolDaiToken": "PoolTokenMock",
     "PoolSaiToken": "PoolTokenMock",
+    "PoolUsdcToken": "PoolTokenMock",
     "ScdMcdMigrationMock": "ScdMcdMigrationMock"
   },
   "dependencies": {},

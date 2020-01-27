@@ -4251,8 +4251,8 @@ pinkie@^2.0.0:
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
 pooltogether-contracts@pooltogether/pooltogether-contracts#master:
-  version "0.1.0"
-  resolved "https://codeload.github.com/pooltogether/pooltogether-contracts/tar.gz/b5cc97be15b8eddc1761074fd468b3fc6ef91ee6"
+  version "0.2.0"
+  resolved "https://codeload.github.com/pooltogether/pooltogether-contracts/tar.gz/a8bce5d4ee03dff2333f548767e383456b41792f"
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f
     "@openzeppelin/contracts-ethereum-package" "2.4.0"
