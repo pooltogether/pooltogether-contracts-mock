@@ -37,9 +37,9 @@
     "commander": "^4.0.1",
     "eth-gas-reporter": "0.2.0",
     "ganache-cli": "6.5.0",
+    "git": "^0.1.5",
     "oz-console": "^1.1.0",
     "oz-migrate": "^0.2.1",
-    "pooltogether-contracts": "pooltogether/pooltogether-contracts#v2.x",
     "shelljs": "0.8.3",
     "truffle": "5.0.28",
     "truffle-deploy-registry": "0.5.0",
@@ -47,7 +47,7 @@
     "zos-truffle-merge": "0.0.3"
   },
   "devDependencies": {
-    "solc": "0.5.10",
+    "solc": "0.5.12",
     "solidity-coverage": "0.6.4"
   }
 }

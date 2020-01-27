@@ -86,10 +86,10 @@ async function migrate() {
     signer
   } = context
   
-  await migration.migrate(20, () => runShell(`oz create Sai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`))
+  await migration.migrate(20, () => runShell(`oz create Sai ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},Sai,SAI,18'`))
 
   await migration.migrate(24, () => {
-    runShell(`oz create Dai ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    runShell(`oz create Dai ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},Dai,DAI,18'`)
     context = loadContext()
   })
 
@@ -174,7 +174,7 @@ async function migrate() {
 
 
   await migration.migrate(80, () => {
-    runShell(`oz create Usdc ${ozOptions} --network ${ozNetworkName} --init initialize --args ${signer.address}`)
+    runShell(`oz create Usdc ${ozOptions} --network ${ozNetworkName} --init initialize --args '${signer.address},Usdc,USDC,6'`)
     context = loadContext()
   })
 
