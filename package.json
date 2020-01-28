@@ -38,7 +38,7 @@
     "eth-gas-reporter": "0.2.0",
     "ganache-cli": "6.5.0",
     "oz-console": "^1.1.0",
-    "oz-migrate": "^0.2.1",
+    "oz-migrate": "^0.2.4",
     "pooltogether-contracts": "pooltogether/pooltogether-contracts#master",
     "shelljs": "0.8.3",
     "truffle": "5.0.28",
