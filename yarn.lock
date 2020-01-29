@@ -414,10 +414,10 @@
     web3-eth-contract "1.2.2"
     web3-utils "1.2.2"
 
-"@pooltogether/pooltogether-contracts@0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@pooltogether/pooltogether-contracts/-/pooltogether-contracts-0.2.4.tgz#4d21812392c9c140ee7557cd27f8a531f4e75f74"
-  integrity sha512-mWy9BMrWR/X6HA/kjn7lb8ZbJUDcC8cnfWsgeCBMB5DBhcauAz6MEOHvBbafilok/lt48Gaazo4oM4IwkbdiZg==
+"@pooltogether/pooltogether-contracts@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@pooltogether/pooltogether-contracts/-/pooltogether-contracts-0.2.6.tgz#b3efb77b8eced9c84188d58f915db0a62db1ed99"
+  integrity sha512-s3qE/zJCabzYQYq73mOMnJ1/dm8rEngS7JWv5/C6c1EGcYNeSNZ9ssVCB0agCRL9982AEb3g6ZAfk+rtxI8syA==
   dependencies:
     "@kleros/kleros" DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f
     "@openzeppelin/contracts-ethereum-package" "2.4.0"
