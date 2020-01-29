@@ -123,7 +123,7 @@ async function migrate() {
   })
 
   const lockDuration = 40
-  const cooldownDuration = 80
+  const cooldownDuration = 1
   const feeFraction = ethers.utils.parseEther('0.05')
 
   await migration.migrate(40, async () => {

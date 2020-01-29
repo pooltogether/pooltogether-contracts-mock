@@ -1,10 +1,15 @@
 {
-  "name": "base-contract-project",
-  "version": "0.1.0",
-  "description": "Project on which to base new Ethereum smart contract apps",
+  "name": "@pooltogether/pooltogether-contracts-mock",
+  "version": "0.2.3",
+  "description": "Easily stand up PoolTogether on a local Ganache instance",
   "main": "index.js",
+  "homepage": "https://github.com/pooltogether/pooltogether-contracts-mock",
   "repository": "git@github.com:DeltaCamp/base-contract-project.git",
+  "license": "GPL-3.0",
   "author": "Brendan Asselstine brendan@delta.camp",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "truffle test --migrations_directory ./migrations/empty",
     "start": "./scripts/ganache.sh",
@@ -29,7 +34,9 @@
     "migrate-kovan": "./scripts/migrate.js -r",
     "session-kovan": "oz session --from $ADMIN_ADDRESS --network kovan --expires 7200 --timeout 3600",
     "update-all-kovan": "oz update --all --network kovan --from $ADMIN_ADDRESS",
-    "push-and-update-kovan": "yarn push-kovan && yarn update-all-kovan"
+    "push-and-update-kovan": "yarn push-kovan && yarn update-all-kovan",
+    "prepublishOnly": "rm -rf build && oz compile",
+    "postpublish" : "PACKAGE_VERSION=$(cat package.json | grep \\\"version\\\" | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && git tag v$PACKAGE_VERSION && git push --tags"
   },
   "dependencies": {
     "@openzeppelin/cli": "2.6.0",
@@ -37,9 +44,9 @@
     "commander": "^4.0.1",
     "eth-gas-reporter": "0.2.0",
     "ganache-cli": "6.5.0",
-    "oz-console": "^1.1.0",
+    "oz-console": "^1.1.3",
     "oz-migrate": "^0.2.4",
-    "pooltogether-contracts": "pooltogether/pooltogether-contracts#master",
+    "@pooltogether/pooltogether-contracts": "0.2.3",
     "shelljs": "0.8.3",
     "truffle": "5.0.28",
     "truffle-deploy-registry": "0.5.0",
