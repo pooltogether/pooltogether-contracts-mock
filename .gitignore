@@ -2,6 +2,7 @@ node_modules*
 .oz-migrate/local
 .oz-migrate/dev-*
 .ganache
+.history
 build
 networks/*
 .DS_Store

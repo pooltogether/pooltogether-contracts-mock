@@ -13,7 +13,9 @@
     "PoolDaiToken": "PoolTokenMock",
     "PoolSaiToken": "PoolTokenMock",
     "PoolUsdcToken": "PoolTokenMock",
-    "ScdMcdMigrationMock": "ScdMcdMigrationMock"
+    "ScdMcdMigrationMock": "ScdMcdMigrationMock",
+    "DaiPod": "PodMock",
+    "UsdcPod": "PodMock"
   },
   "dependencies": {},
   "name": "pooltogether-contracts-mock",

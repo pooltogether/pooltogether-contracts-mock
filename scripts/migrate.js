@@ -198,6 +198,16 @@ async function migrate() {
   })
 
   await migration.migrate(105, () => mintToMoneyMarketAndWallets(context, context.contracts.Usdc, context.contracts.cUsdc.address, '0.00000001'))
+
+  await migration.migrate(120, async () => {
+    runShell(`oz create DaiPod ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.PoolDai.address}`)
+    context = loadContext()
+  })
+
+  await migration.migrate(130, async () => {
+    runShell(`oz create UsdcPod ${ozOptions} --network ${ozNetworkName} --init initialize --args ${context.contracts.PoolUsdc.address}`)
+    context = loadContext()
+  })
 }
 
 console.log(chalk.yellow('Started...'))
