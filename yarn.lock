@@ -9,6 +9,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@deltacamp/kleros@DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f", "@kleros/kleros@DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f":
+  version "0.0.7"
+  resolved "https://codeload.github.com/DeltaCamp/kleros/tar.gz/ca7fbdcc195cfd1267efb99aae905c3400a5ea5f"
+  dependencies:
+    "@kleros/kleros-interaction" "^0.9.0"
+    minimetoken "^0.2.0"
+
 "@firebase/app-types@0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@firebase/app-types/-/app-types-0.4.3.tgz#80d2b6e5ee43ac99892329ab02301ee7ed82da45"
@@ -197,13 +204,6 @@
     minimetoken "^0.2.0"
     openzeppelin-solidity "^1.12.0"
     web3-utils "^1.2.1"
-
-"@kleros/kleros@DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f":
-  version "0.0.7"
-  resolved "https://codeload.github.com/DeltaCamp/kleros/tar.gz/ca7fbdcc195cfd1267efb99aae905c3400a5ea5f"
-  dependencies:
-    "@kleros/kleros-interaction" "^0.9.0"
-    minimetoken "^0.2.0"
 
 "@kleros/kleros@^0.1.2":
   version "0.1.2"
@@ -459,14 +459,25 @@
     web3-eth-contract "1.2.2"
     web3-utils "1.2.2"
 
-"@pooltogether/pods@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@pooltogether/pods/-/pods-0.2.1.tgz#346f815184f3e1c5b4387f3ccac8441c2489a711"
-  integrity sha512-NNEOWtOkWyTMOnH5wtCcKiKyTFkumwtQi9oOpAM0Qe6arQRNF/RWh1QbW8xc+MN/XcKGvBjsRPDY+ub4x9Xw2g==
+"@pooltogether/pods@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@pooltogether/pods/-/pods-0.3.2.tgz#395fd4ad7b4d6347db79931f518f039d7a110feb"
+  integrity sha512-mtPF9sLnPez0pXkVDFl5u2WfnEOujMCfMsZs9gRs+Y1eyg81UvCFOPzit+p0vS1HfrDAjIkWJTq784mMgdnwbg==
   dependencies:
     "@openzeppelin/contracts-ethereum-package" openzeppelin/openzeppelin-contracts-ethereum-package#c5fa02f0c502d9d28bdec601637fc548834c86c5
     "@openzeppelin/upgrades" "^2.7.1"
-    "@pooltogether/pooltogether-contracts" pooltogether/pooltogether-contracts#master
+    "@pooltogether/pooltogether-contracts" "^0.2.12"
+
+"@pooltogether/pooltogether-contracts@^0.2.12":
+  version "0.2.12"
+  resolved "https://registry.yarnpkg.com/@pooltogether/pooltogether-contracts/-/pooltogether-contracts-0.2.12.tgz#9006386ed83b6229be68bc638c6c7bb6629b5894"
+  integrity sha512-PD8MbN9TvT9QKqqT4MAdVVSlGDXTLGj8IinJKLiybDL+rMgR5ZqhL7KpmDXQ60zhpgL5UXcHFYx3+fTPVDzTAg==
+  dependencies:
+    "@deltacamp/kleros" DeltaCamp/kleros#ca7fbdcc195cfd1267efb99aae905c3400a5ea5f
+    "@openzeppelin/contracts-ethereum-package" "2.4.0"
+    "@openzeppelin/upgrades" "2.5.1"
+    fixidity DeltaCamp/Fixidity#edf533f77df43b16a7b92f17af7a8930db01f293
+    scd-mcd-migration pooltogether/scd-mcd-migration
 
 "@pooltogether/pooltogether-contracts@pooltogether/pooltogether-contracts#master":
   version "0.2.9"

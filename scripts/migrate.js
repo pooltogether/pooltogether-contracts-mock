@@ -69,7 +69,8 @@ async function mintToMoneyMarketAndWallets(context, tokenContract, moneyMarketAd
   }
 }
 
-const ozOptions = program.verbose ? '' : '-s'
+// const ozOptions = program.verbose ? '' : '-s'
+const ozOptions = ''
 
 async function migrate() {
   const project = new Project('.oz-migrate')
@@ -193,6 +194,7 @@ async function migrate() {
     context = loadContext()
   })
 
+  console.log({ add: context.contracts.PoolUsdcToken})
   await migration.migrate(100, async () => {
     await context.contracts.PoolUsdc.setPoolToken(context.contracts.PoolUsdcToken.address)
   })
