@@ -57,5 +57,10 @@
   "devDependencies": {
     "solc": "0.5.10",
     "solidity-coverage": "0.6.4"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "abis/**",
+    "contracts/**"
+  ]
 }
